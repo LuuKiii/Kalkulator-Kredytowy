@@ -11,39 +11,78 @@ import javax.faces.context.FacesContext;
 @RequestScoped
 //@SessionScoped
 public class KredytBB {
-	private String x;
-	private String y;
+	private String kwota;
+	private String oproc;
+	private String lat;
 	private Double result;
 
 	@Inject
 	FacesContext ctx;
 
 
-	public String getX() {
-		return x;
+
+
+	public String getKwota() {
+		return kwota;
 	}
 
-	public void setX(String x) {
-		this.x = x;
+	public void setKwota(String kwota) {
+		this.kwota = kwota;
 	}
 
-	public String getY() {
-		return y;
+	public String getOproc() {
+		return oproc;
 	}
 
-	public void setY(String y) {
-		this.y = y;
+	public void setOproc(String oproc) {
+		this.oproc = oproc;
+	}
+
+	public String getLat() {
+		return lat;
+	}
+
+	public void setLat(String lat) {
+		this.lat = lat;
 	}
 
 	public Double getResult() {
 		return result;
 	}
 
+	public boolean Calculate() {
+		
+		
+		try {
+			double kwota = Double.parseDouble(this.kwota);
+			double oproc = Double.parseDouble(this.oproc);
+			double lat = Double.parseDouble(this.lat);
+			
+			if(kwota<0 || oproc<0 || lat<0)
+			{
+				ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Podane wartoœci nie mog¹ byæ mniejsze od 0", null));
+				return false;
+			}
+			result = kwota + ((kwota*(oproc/100))*lat)*12;
 
-
+			ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Operacja wykonana poprawnie", null));
+			return true;
+		} catch (Exception e) {
+			ctx.addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "B³¹d podczas przetwarzania parametrów", null));
+			return false;
+		}
+		
+		
+	}
+	
 	// Go to "showresult" if ok
 	public String calc() {
-
+		
+		if (Calculate()) {
+			return "showresult";
+		}
+		
 		return null;
 	}
 

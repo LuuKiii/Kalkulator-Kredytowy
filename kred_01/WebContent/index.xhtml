@@ -12,13 +12,15 @@
 	<h1>Kredyt</h1>
 
 	<h:form id="bla">
-  		x: <h:inputText value="#{kredytBB.x}" />
+  		Kwota: <h:inputText value="#{kredytBB.kwota}" />
 		<br />
-  		y: <h:inputText value="#{kredytBB.y}" />
+  		Oprocentowanie: <h:inputText value="#{kredytBB.oproc}" />
+		<br />
+		Na czas(lat): <h:inputText value="#{kredytBB.lat}" />
 		<br />
 		<h:messages id="msg" />
 
-		<h:commandButton value="Dodaj" action="#{kredytBB.calc()}"/>
+		<h:commandButton value="Oblicz" action="#{kredytBB.calc()}"/>
 		<br />
 
 	</h:form>
