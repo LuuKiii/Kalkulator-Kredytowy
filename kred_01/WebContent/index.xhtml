@@ -17,15 +17,15 @@
 	 <h:panelGrid id="grid" columns="3" cellpadding="5">
 	 
   		<p:outputLabel for="kwota" value="Kwota:" />
-  		<p:inputText id='kwota' value="#{kredytBB.kwota}" required="true" requiredMessage="Podaj kwotę"/>
+  		<p:inputNumber id='kwota' value="#{kredytBB.kwota}" required="true" requiredMessage="Podaj kwotę"/>
 		<p:message for="kwota" />
 		
   		<p:outputLabel for="oproc" value="Oprocentowanie:" />
-  		 <p:inputText id="oproc" value="#{kredytBB.oproc}" required="true" requiredMessage="Podaj oprocentowanie"/>
+  		 <p:inputNumber id="oproc" value="#{kredytBB.oproc}" symbol="%" symbolPosition="s"  required="true" requiredMessage="Podaj oprocentowanie"/>
 		<p:message for="oproc" />
 		
 		<p:outputLabel for="lat" value="Na czas(w latach)" />
-		<p:inputText id="lat" value="#{kredytBB.lat}" required="true" requiredMessage="Podaj czas"/>
+		<p:inputNumber id="lat" value="#{kredytBB.lat}" decimalPlaces="0" required="true" requiredMessage="Podaj czas"/>
 		<p:message for="lat" />
 		
 	

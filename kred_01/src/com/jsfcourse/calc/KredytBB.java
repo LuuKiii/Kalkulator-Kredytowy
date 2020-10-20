@@ -63,6 +63,12 @@ public class KredytBB {
 				ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Podane wartoœci nie mog¹ byæ mniejsze od 0", null));
 				return false;
 			}
+			
+			if( oproc>100 )
+			{
+				ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Oprocentowanie nie mo¿e byæ wiêksze ni¿ 100%", null));
+				return false;
+			}
 			result = kwota + ((kwota*(oproc/100))*lat)*12;
 
 			ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Operacja wykonana poprawnie", null));
