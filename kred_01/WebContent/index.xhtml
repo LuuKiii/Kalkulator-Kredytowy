@@ -17,15 +17,21 @@
 	 <h:panelGrid id="grid" columns="3" cellpadding="5">
 	 
   		<p:outputLabel for="kwota" value="Kwota:" />
-  		<p:inputNumber id='kwota' value="#{kredytBB.kwota}" required="true" requiredMessage="Podaj kwotę"/>
+  		<p:inputNumber id='kwota' value="#{kredytBB.kwota}" required="true" requiredMessage="Podaj kwotę" validatorMessage="Kwota musi być większa niż 1000zł">
+  		<f:validateDoubleRange minimum="1000"/>
+  		</p:inputNumber>
 		<p:message for="kwota" />
 		
   		<p:outputLabel for="oproc" value="Oprocentowanie:" />
-  		 <p:inputNumber id="oproc" value="#{kredytBB.oproc}" symbol="%" symbolPosition="s"  required="true" requiredMessage="Podaj oprocentowanie"/>
+  		 <p:inputNumber id="oproc" value="#{kredytBB.oproc}" symbol="%" symbolPosition="s"  required="true" requiredMessage="Podaj oprocentowanie" validatorMessage="Oprocentowanie musi być z przedziału 1%-30%">
+  		 <f:validateDoubleRange minimum="1" maximum="30"/>
+  		 </p:inputNumber>
 		<p:message for="oproc" />
 		
 		<p:outputLabel for="lat" value="Na czas(w latach)" />
-		<p:inputNumber id="lat" value="#{kredytBB.lat}" decimalPlaces="0" required="true" requiredMessage="Podaj czas"/>
+		<p:inputNumber id="lat" value="#{kredytBB.lat}" decimalPlaces="0" required="true" requiredMessage="Podaj czas" validatorMessage="Kredyt musi być z przedziału od 1 roku do 25 lat">
+		<f:validateDoubleRange minimum="1" maximum="25"/>
+		</p:inputNumber>
 		<p:message for="lat" />
 		
 	
