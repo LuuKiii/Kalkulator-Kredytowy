@@ -3,7 +3,6 @@ package com.jsfcourse.calc;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
-import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
@@ -11,9 +10,9 @@ import javax.faces.context.FacesContext;
 @RequestScoped
 //@SessionScoped
 public class KredytBB {
-	private String kwota;
-	private String oproc;
-	private String lat;
+	private Double kwota;
+	private Double oproc;
+	private int lat;
 	private Double result;
 
 	@Inject
@@ -22,27 +21,27 @@ public class KredytBB {
 
 
 
-	public String getKwota() {
+	public Double getKwota() {
 		return kwota;
 	}
 
-	public void setKwota(String kwota) {
+	public void setKwota(Double kwota) {
 		this.kwota = kwota;
 	}
 
-	public String getOproc() {
+	public Double getOproc() {
 		return oproc;
 	}
 
-	public void setOproc(String oproc) {
+	public void setOproc(Double oproc) {
 		this.oproc = oproc;
 	}
 
-	public String getLat() {
+	public int getLat() {
 		return lat;
 	}
 
-	public void setLat(String lat) {
+	public void setLat(int lat) {
 		this.lat = lat;
 	}
 
@@ -54,15 +53,11 @@ public class KredytBB {
 		
 		
 		try {
-			double kwota = Double.parseDouble(this.kwota);
-			double oproc = Double.parseDouble(this.oproc);
-			double lat = Double.parseDouble(this.lat);
+			Double kwota=getKwota();
+			Double oproc=getOproc();
+			int lat=getLat();
 			
-			if(kwota<0 || oproc<0 || lat<0)
-			{
-				ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Podane wartoœci nie mog¹ byæ mniejsze od 0", null));
-				return false;
-			}
+			
 			result = kwota + ((kwota*(oproc/100))*lat)*12;
 
 			ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Operacja wykonana poprawnie", null));
